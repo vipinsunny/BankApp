@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ export class LoginComponent implements OnInit {
     1002: { acno: 1002, uname: "Mini", password: "1002", balance: 3000 }
   }
 
-  constructor() { }
+
+
+  constructor(private router:Router) { }
 
 
 
@@ -40,21 +43,27 @@ export class LoginComponent implements OnInit {
 
 
 
-  login(a:any, p:any){
-    console.log(a);
-    var acno = a.value;
-    var password = p.value;
+  // login(a:any, p:any){
+
+    login(){
+      var acno=this.acno;
+      var password=this.pswd
+    
+    // console.log(a);
+    // var acno = a.value;
+    // var password = p.value;
     let database = this.users;
     if (acno in database) {
       if (password == database[acno]["password"]) {
         alert("Login successful")
+        this.router.navigateByUrl("dashboard")
       }
       else {
-        alert("Incorrect password")
+        alert("Incorrect Password")
       }
     }
     else {
-      alert("Invalid account")
+      alert("Invalid Account Number")
     }
   }
 }
