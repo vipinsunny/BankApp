@@ -4,6 +4,8 @@
     <span class="quote text-light">Giving you freedom...</span>
   </nav>
   
+  <h1 style="color: white;">Welcome {{user}}</h1>
+  <a routerLink="/transaction">Transaction History</a>
   
   <div class="container col-md-12 mt-0">
       <div class="d-flex justify-content-center h-100">
@@ -50,7 +52,7 @@
                     
                     </div>
 
-                    <div style="color: white;" class="error" *ngIf="(this.depositForm.get('amount')?.touched||this.depositForm.get('amount')?.dirty)&& this.depositForm.get('amount')?.errors">invalid </div>
+                    <div style="color: white;" class="error" *ngIf="(this.depositForm.get('amount')?.touched||this.depositForm.get('amount')?.dirty)&& this.depositForm.get('amount')?.errors">invalid amount </div>
                       <div class="form-group">
                          
                           <!-- <input type="submit" value="Login"  (click)="login()" class="btn float-right login_btn " style="width:50%" > -->
@@ -115,7 +117,7 @@
                         <input type="text" class="form-control" name="amountt"  formControlName="amount" placeholder="amount"  id="withdraw_amount" required>
                     </div>
 
-                    <div style="color: white;" class="error" *ngIf="(this.withdrawForm.get('amount')?.touched||this.withdrawForm.get('amount')?.dirty)&& this.withdrawForm.get('amount')?.errors">invalid </div>
+                    <div style="color: white;" class="error" *ngIf="(this.withdrawForm.get('amount')?.touched||this.withdrawForm.get('amount')?.dirty)&& this.withdrawForm.get('amount')?.errors">invalid amount </div>
 
                       <div class="form-group">
                          

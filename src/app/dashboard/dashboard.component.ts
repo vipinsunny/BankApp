@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   }
 
   )
-
+user=this.ds.currentUserName
   constructor(private ds: DataService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -76,4 +76,5 @@ export class DashboardComponent implements OnInit {
 
   }
 }
+
 
