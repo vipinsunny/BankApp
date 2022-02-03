@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,11 +31,31 @@ export class DashboardComponent implements OnInit {
   }
 
   )
-user=this.ds.currentUserName
-  constructor(private ds: DataService, private fb: FormBuilder) { }
+user:any
+accno=""
+
+lDate:any
+  constructor(private ds: DataService, private fb: FormBuilder, private router: Router) {
+    this.lDate= new Date()
+    if(localStorage.getItem("currentUserName")){
+    this.user=JSON.parse(localStorage.getItem("currentUserName") || "")
+   }
+  }
 
   ngOnInit(): void {
+    if(!localStorage.getItem("token")){
+      alert(("Please Log In"))
+      this.router.navigateByUrl("")
+    }
   }
+  
+  logout(){
+    localStorage.removeItem("currentAcno")
+    localStorage.removeItem("currentUserName")
+    localStorage.removeItem("token")
+    this.router.navigateByUrl("")
+  }
+
   deposit() {
 
     var acno = this.depositForm.value.acno
@@ -42,12 +63,20 @@ user=this.ds.currentUserName
     var amount = this.depositForm.value.amount
 
     if (this.depositForm.valid) {
-      let result = this.ds.deposit(acno, pswd, amount)
-
-      if (result) {
-        // alert(amount+ "credited to your account . Balance is"+ result )
-        alert("your account is credited with" + amount + "balance is" + result)
+      this.ds.deposit(acno, pswd, amount)
+      .subscribe((result:any) =>{
+        if(result){
+        alert(result.message)
+        
       }
+      
+      },
+      (result)=>{
+        alert(result.error.message)
+      
+      }
+      )
+
     } else {
       alert("invalid form")
     }
@@ -60,21 +89,47 @@ user=this.ds.currentUserName
 
     if (this.withdrawForm.valid) {
 
-      let result = this.ds.withdraw(acno, pswd, amount)
-
-      if (result) {
-        // alert(amount+ "credited to your account . Balance is"+ result )
-        alert("your account is debited with" + amount + "balance is" + result)
-
+      this.ds.withdraw(acno, pswd, amount)
+        .subscribe((result:any) =>{
+          if(result){
+          alert(result.message)
+          
+        }
         
+        },
+        (result)=>{
+          alert(result.error.message)
+        
+        }
+        )
+  
+      } else {
+        alert("invalid form")
       }
+   }
+   deleteFromParent(){
+this.accno=JSON.parse(localStorage.getItem("currentAcno") || "")
 
-    }else{
-      alert("invalid form")
-    }
+   }
+   delete(event:any){
+     this.ds.delete(event)
+     .subscribe((result:any)=>{
+       if(result){
+        alert(result.message)
+        this.router.navigateByUrl('')
+       }
+     },
+     (result)=>{
+       alert(result.error.message)
+     }
+     )
+     }
+
+     cancel(){
+       this.accno=""
+     }
+   }
 
 
-  }
-}
 
 

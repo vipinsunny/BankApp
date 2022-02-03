@@ -59,13 +59,23 @@ export class LoginComponent implements OnInit {
       //   alert("invalid account number")
       // }
      
-      let result = this.ds.login(acno, password)
-
-      if (result) {
-        alert("login successfull")
-        this.router.navigateByUrl('dashboard')
+      //asynchronous
+      this.ds.login(acno, password)
+      .subscribe((result:any) =>{
+        if(result){
+        alert(result.message)
+        localStorage.setItem("currentAcno", JSON.stringify(result.currentAcno))
+        localStorage.setItem("currentUserName", JSON.stringify(result.currentUserName))
+        localStorage.setItem("token", JSON.stringify(result.token))
+        this.router.navigateByUrl("dashboard")
       }
-
+      
+      },
+      (result)=>{
+        alert(result.error.message)
+      
+      }
+      )
     } else {
       alert("invalid form")
     }

@@ -31,15 +31,22 @@ pswd:['',[Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
     var uname=this.registerForm.value.uname
     var acno=this.registerForm.value.acno
     var pswd=this.registerForm.value.pswd
-    let result=this.ds.register(acno, pswd, uname)
-    
-if(result){
-      alert("Account registered successfully.......")
+    //asynchronous
+    this.ds.register(acno, pswd, uname)
+    .subscribe((result:any) =>{
+      if(result){
+      alert(result.message)
       this.router.navigateByUrl("")
     }
-    else{
-      alert("Account already exist!!!!")
+    
+    },
+    (result)=>{
+      alert(result.error.message)
+    
     }
+    )
+  
+
   }
     else{
       alert("Invalid Form")
