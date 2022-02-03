@@ -7,11 +7,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
-import { TransactionComponent } from './transaction/transaction.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { HighlightDirective } from './directives/highlight.directive';
-
-
+import { TransactionComponent } from './transaction/transaction.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +17,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     DashboardComponent,
     RegisterComponent,
     TransactionComponent,
+    
     DeleteConfirmationComponent,
     HighlightDirective,
     
