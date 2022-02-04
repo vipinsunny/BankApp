@@ -9,7 +9,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { HighlightDirective } from './directives/highlight.directive';
-import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionComponent } from './transaction1/transaction.component';
+import { AnimationComponent } from './animation/animation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,7 @@ import { TransactionComponent } from './transaction/transaction.component';
     
     DeleteConfirmationComponent,
     HighlightDirective,
+    AnimationComponent,
     
   ],
   imports: [
@@ -27,7 +31,9 @@ import { TransactionComponent } from './transaction/transaction.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
+
     
   ],
   providers: [],

@@ -17,7 +17,8 @@
     <!-- parent - dashboard component and child - delete confirmation -->
 
     <app-delete-confirmation (onCancel)="cancel()" (onDelete)="delete($event)" [item]="accno"></app-delete-confirmation>
-  
+  <!-- <app-animation></app-animation> -->
+    
   <div class="container col-md-12 mt-0">
       <div class="d-flex justify-content-center h-100">
           <div [ngClass]="accno? 's1': '' " class="card">
