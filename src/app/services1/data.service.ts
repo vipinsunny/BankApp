@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 
 
@@ -88,7 +89,7 @@ export class DataService {
     }
 
     ////asynchronous event
-    return this.http.post('http://localhost:3000/register',data)
+    return this.http.post(environment.apiUrl+ '/register',data)
 
 
     ///////////////////////////////////////////////////////////////////////
@@ -116,7 +117,7 @@ export class DataService {
       password
     }
 
-    return this.http.post('http://localhost:3000/login',data)
+    return this.http.post(environment.apiUrl+'/login',data)
 
 
 
@@ -147,7 +148,7 @@ export class DataService {
       password,
       amt
     }
-    return this.http.post('http://localhost:3000/deposit',data,this.getOptions())
+    return this.http.post(environment.apiUrl+'/deposit',data,this.getOptions())
   }
 
 
@@ -236,7 +237,7 @@ export class DataService {
       password,
       amt
     }
-    return this.http.post('http://localhost:3000/withdraw',data,this.getOptions())
+    return this.http.post(environment.apiUrl+'/withdraw',data,this.getOptions())
 
         }
   
@@ -266,7 +267,7 @@ getTransaction(acno:any){
 
   //////////asynchronous
 
-  return this.http.post('http://localhost:3000/getTransaction/'+acno,data,this.getOptions())
+  return this.http.post(environment.apiUrl+'/getTransaction/'+acno,data,this.getOptions())
 
 }
 
@@ -275,7 +276,7 @@ delete(acno:any){
 
   //////////asynchronous
 
-  return this.http.delete('http://localhost:3000/deleteAcc/'+acno,this.getOptions())
+  return this.http.delete(environment.apiUrl+'/deleteAcc/'+acno,this.getOptions())
 
 }
 
